@@ -1,2 +1,2 @@
 # CLfinal
-fatima and toomie's connections lab final project!
+fatema and toomie's connections lab final project!
