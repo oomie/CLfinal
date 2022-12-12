@@ -57,4 +57,16 @@ In our initial plan, the plant growth would have been controlled by a day-night 
 body
 
 
+## Contributions
+
+### Fatema:
+body
+
+### Toomie:
+body
+
+## References
+
+
+
 For code - ```code here ```
