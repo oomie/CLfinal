@@ -36,7 +36,17 @@ the image in the object. We instead used an ```imgIndex``` which stores the numb
 ```
 
 ## Next Steps
-body
+A few things we would have liked to add to this project are:
+
+### Adding more types and colors of plants
+Right now we only have 4 different colored roses in the menu, but we would have liked to give the user different flower options such as lillies or tulips for example.
+
+### Create a day and night cycle
+In our initial plan, the plant growth would have been controlled by a day-night cycle rather than a user-controlled watering can, but we scrapped that idea because we felt that making it user-controlled would be more interactive. Nevertheless, we still think a day-night cycle would be a fun addition to this project, not necessarily to control plant growth but just to make the experience more engaging.
+
+### An option of not having everyone access your plant
+
+
 
 ## Conclusion
 body
