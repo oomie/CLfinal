@@ -1,6 +1,10 @@
 # CL Final Project: Virtual Campus Garden
 By Fatema Alhameli and Fatima Aljunaibi(toomie)
 
+* [Live Site](https://campus-garden.glitch.me)
+
+* [Glitch Code Link](https://glitch.com/edit/#!/campus-garden)
+
 ## Concept
 A shared virtual garden where multiple users can plant flowers from the plant menu and water them to watch them grow. 
 This is intended to be a calming gardening simulation game. 
