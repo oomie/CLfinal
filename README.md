@@ -16,8 +16,18 @@ We started off by working on the p5 interactions and making the sprites. We coul
 Toomie used the flowers from Animal Crossing as a reference and drew the plant sprites on Procreate then exported them as png images to use as sprites. 
 
 ### Wireframe
+<img src= "https://github.com/FatemaAlhameli/ConnectionsLab/blob/main/Media/Assignments%20Media/FinalProjectw1.png" width = "250" height = "180"> <img src= "https://github.com/FatemaAlhameli/ConnectionsLab/blob/main/Media/Assignments%20Media/FinalProjectw2.png" width = "250" height = "180"> <img src= "https://github.com/FatemaAlhameli/ConnectionsLab/blob/main/Media/Assignments%20Media/FinalProjectw3.png" width = "250" height = "180">
 
 ### Information Flow
+
+* Plant object: saves the coordinates of the plant when placed on the grid, what state it’s in (sprout, stem, flower) and how old it is. 
+
+* When the user drags a plant to the grid it gets saved to the database. 
+
+* If the user chooses to delete a plant, then it gets deleted from the db.
+ 
+* Usernames will be displayed on the soil 
+
 
 ### HTML/CSS/JS
 
@@ -48,6 +58,8 @@ The use of HTML and CSS in this project was pretty simple we used two Html pages
 ```
 
 In our main Html page, we displayed our p5 canvas at the width and height of the window. At the top, we added a heading with the name of our project “Campus Garden” and an instructions button. The button is a popup that maximizes a small instructions page. We followed a [tutorial](https://www.youtube.com/watch?v=MBaw_6cPmAw) that helped us create it. The process consisted of two buttons and a few divs for the sections of the instructions such as the header and body. One of the buttons was included in a div and its role is to close the popup. In the instructions body div, we added a list where we wrote our instructions. To create the popup interaction we had to use JS and add a few click events. 
+
+<img src= "https://github.com/FatemaAlhameli/ConnectionsLab/blob/main/Media/Assignments%20Media/instructions.png" width = "260" height = "190">
 
 ```
 window.addEventListener("load", () => {
@@ -434,15 +446,14 @@ function mouseReleased() {
 ### MonogoDB
 
 ## Challenges
-One of the main challenges we faced while working on this project was getting the p5 interactions to run smoothly. 
-### fatema pls expand here if u dont mind!
+One of the main challenges we faced while working on this project was getting the p5 interactions to run smoothly. We first began developing our p5 interactions by creating a class object for the plant. We struggled with writing the code and found ourselves not knowing what to do or how to add more elements to our interaction. We decided to start over in our p5 code and try rewriting it in a way that would make more sense to use. We researched and looked for ways how we can execute our ideas and decided that we were going to create an object when the mouse is pressed. And from there we began building it that way. 
 
 Another challenge we had was working with MongoDB and figuring out how to save our plants array onto the DB, and also sending the array information every time a change is made, such as 
 when a user waters a plant and the sprite changes, or if a plant is deleted. Our issue was that the array was only getting posted whenever a new plant was added to it.
 So, what we needed to do was post the array again on mouse released, so the position and sprite information was updated in the DB. 
 
 Another issue we had with MongoDB was that our plant object had the image stored in it, but MongoDB does not store images so we had to change the way we store 
-the image in the object. We instead used an ```imgIndex``` which stores the number of the sprite image:
+the image in the object. We instead used an ```imgIndex``` which stores the number of the sprite image as shown below. Previously we were storing the array that contained the sprites in the object and that is what created the issues. But was resolved when we called the array in the image function instead of the object.
 
 ```
         let plant = {
@@ -453,6 +464,9 @@ the image in the object. We instead used an ```imgIndex``` which stores the numb
           t: i,
           username: username,
         };
+        
+            
+        image(flowers[plants[i].t][plants[i].imgIndex], plants[i].x, plants[i].y, 30 * unit, 30 * unit);
 ```
 
 ## Next Steps
@@ -462,7 +476,7 @@ A few things we would have liked to add to this project are:
 body
 
 ### An option of not having everyone access your plant
-body
+The ability for all users to water and delete any other user's plant is intentional as our concept was creating a public campus garden. However, we like for the next steps we can add an option of having users choose if they want to have others access their plants.
 
 ### Adding more types and colors of plants
 Right now we only have 4 different colored roses in the menu, but we would have liked to give the user different flower options such as lillies or tulips for example.
@@ -470,21 +484,34 @@ Right now we only have 4 different colored roses in the menu, but we would have 
 ### Create a day and night cycle
 In our initial plan, the plant growth would have been controlled by a day-night cycle rather than a user-controlled watering can, but we scrapped that idea because we felt that making it user-controlled would be more interactive. Nevertheless, we still think a day-night cycle would be a fun addition to this project, not necessarily to control plant growth but just to make the experience more engaging.
 
+### Add a mute button to mute the background music
 
 
-## Conclusion
+
+## User Testing
 body
 
 
 ## Contributions
 
 ### Fatema:
-body
+This project has definitely helped me learn and practice the process of using databases to store and get information. Although I have had experience with using databases throughout the semester, this project seemed to push me further in understanding its technicalities. Similarly, using p5.js wasn't new to me however along with p5.play it was a process that challenged me to push myself. Looking back at it now it was definitely rewarding to see myself be more familiar and confident with front and back end programming. Another aspect of this project I really enjoyed and learned from was user testing with my classmates. The feedback Toomie and I received definitely helped us view our idea from a different perspective which has really enhanced the outcome of our project. Toomie and I contributed together with almost every aspect of the project, we met in person and through zoom to work together. This collaboration has been great and were both able to greatly learn from each other. 
 
 ### Toomie:
 body
 
 ## References
+* [Instructions Popup](https://www.youtube.com/watch?v=MBaw_6cPmAw)
+
+* [P5.play Reference](https://p5play.org/learn/sprite.html)
+
+* [P5.js Reference](https://p5js.org/reference/#/p5/splice)
+
+* [Watering Example](https://editor.p5js.org/IreneLi/sketches/RPWvpx9C-)
+
+* [MonogoDB Video Tutorials](https://drive.google.com/drive/u/0/folders/1SjT74zERf3GEkOQXjR11czko8Rz3o7nz)
+
+* [QuickMongo Documentation](https://www.npmjs.com/package/quickmongo)
 
 
 
