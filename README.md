@@ -498,7 +498,7 @@ body
 This project has definitely helped me learn and practice the process of using databases to store and get information. Although I have had experience with using databases throughout the semester, this project seemed to push me further in understanding its technicalities. Similarly, using p5.js wasn't new to me however along with p5.play it was a process that challenged me to push myself. Looking back at it now it was definitely rewarding to see myself be more familiar and confident with front and back end programming. Another aspect of this project I really enjoyed and learned from was user testing with my classmates. The feedback Toomie and I received definitely helped us view our idea from a different perspective which has really enhanced the outcome of our project. Toomie and I contributed together with almost every aspect of the project, we met in person and through zoom to work together. This collaboration has been great and were both able to greatly learn from each other. 
 
 ### Toomie:
-body
+Working on this project was definitely a learning experience for both of us. Although we are using p5 again it was much more challenging to work on since the p5 interactions were the main focus of our project, so working on perfecting that took up a lot of our time. It was quite fun for me to draw and color our plants for this project, and I would love to make more plant sprites to add to it! Finding the right music and sound effects was also very fun for me, I  Just like with the previous project, Fatema and I often worked together while coding, whether it was on zoom or in-person. Whenever we worked separately we would always send updated versions of the code to each other and tried to help each other whenever we were stuck with something. We found that working together most of the time was the most effective way for us to make progress
 
 ## References
 * [Instructions Popup](https://www.youtube.com/watch?v=MBaw_6cPmAw)
@@ -513,6 +513,9 @@ body
 
 * [QuickMongo Documentation](https://www.npmjs.com/package/quickmongo)
 
+* [Background Music: K.K. Stroll](https://www.youtube.com/watch?v=8NQNFkwXH-Q)
 
+* [Google Fonts](https://fonts.google.com/)
+* 
+* [MongoDB Class Example](https://github.com/MathuraMG/ConnectionsLab-NYUAD/tree/master/Week_12%7Cp5LiveMedia_MongoDB/12.2-Coffee_Tracker_Mongo)
 
-For code - ```code here ```
