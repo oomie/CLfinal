@@ -19,6 +19,88 @@ Toomie used the flowers from Animal Crossing as a reference and drew the plant s
 
 ### Information Flow
 
+### HTML/CSS/JS
+
+The use of HTML and CSS in this project was pretty simple we used two Html pages, one for our home page and another one where we displayed our p5 canvas. Our home page consisted of a title and a few instructions for the users to read. We also included an image at the footer. We used CSS for the fonts, background colors, sizes, and positions of all Html elements.
+
+```
+    <button data-instructions-target="#instructions" class="instructions-btn">
+      Instructions
+    </button>
+    <div class="instructions" id="instructions">
+      <div class="instructions-header">
+        <div class="title">Instructions</div>
+        <button data-close-button class="close-button">&times;</button>
+      </div>
+      <div class="instructions-body">
+        <ul>
+          <li>Drag your desired flower on to your grid</li>
+          <li>Use the water can tool by clicking on the icon</li>
+          <li>Press and hold to water your flower and watch it grow</li>
+          <li>
+            Use the scissors tool by clicking on the icon and click to remove
+            your flower
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="overlay"></div>
+```
+
+In our main Html page, we displayed our p5 canvas at the width and height of the window. At the top, we added a heading with the name of our project “Campus Garden” and an instructions button. The button is a popup that maximizes a small instructions page. We followed a [tutorial](https://www.youtube.com/watch?v=MBaw_6cPmAw) that helped us create it. The process consisted of two buttons and a few divs for the sections of the instructions such as the header and body. One of the buttons was included in a div and its role is to close the popup. In the instructions body div, we added a list where we wrote our instructions. To create the popup interaction we had to use JS and add a few click events. 
+
+```
+window.addEventListener("load", () => {
+  // Asking for username on load
+  username = window.prompt("Enter your name! ");
+
+  //Instructions Popup
+  let openInstructionsButtons = document.querySelectorAll(
+    "[data-instructions-target]"
+  );
+  let closeInstructionsButtons = document.querySelectorAll(
+    "[data-close-button]"
+  );
+  let overlay = document.getElementById("overlay");
+
+  openInstructionsButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      let instructions = document.querySelector(
+        button.dataset.instructionsTarget
+      );
+      openInstructions(instructions);
+    });
+  });
+
+  overlay.addEventListener("click", () => {
+    let instructions = document.querySelectorAll(".instructions.active");
+    instructions.forEach((instructions) => {
+      closeInstructions(instructions);
+    });
+  });
+
+  closeInstructionsButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      let instructions = button.closest(".instructions");
+      closeInstructions(instructions);
+    });
+  });
+}); //load
+
+//Instructions Popup
+function openInstructions(instructions) {
+  if (instructions == null) return;
+  instructions.classList.add("active");
+  overlay.classList.add("active");
+}
+
+function closeInstructions(instructions) {
+  if (instructions == null) return;
+  instructions.classList.remove("active");
+  overlay.classList.remove("active");
+}
+```
+
 ### p5.js & p5.play
 
 We first began developing our project on the p5.js editor as almost all of the interactions are via p5.js and p5.play. To use p5.play we had to add a few script tags in the HTML of the editor to be able to use the library. In draw, we created our basic UI such as the grass, soil, menu bar, and tools section. These we created with simple p5 shapes using the ```rect()```.  We also added the sky and fence images through the preload function and ```image()``` in the draw function.
@@ -347,7 +429,7 @@ function mouseReleased() {
 }
 ```
 
-###Toomie could you explain the sound code here or anywhere u think is suitable
+### Toomie could you explain the sound code here or anywhere u think is suitable
 
 ### MonogoDB
 
