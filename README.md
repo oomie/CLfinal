@@ -516,6 +516,6 @@ Working on this project was definitely a learning experience for both of us. Alt
 * [Background Music: K.K. Stroll](https://www.youtube.com/watch?v=8NQNFkwXH-Q)
 
 * [Google Fonts](https://fonts.google.com/)
-* 
+
 * [MongoDB Class Example](https://github.com/MathuraMG/ConnectionsLab-NYUAD/tree/master/Week_12%7Cp5LiveMedia_MongoDB/12.2-Coffee_Tracker_Mongo)
 
