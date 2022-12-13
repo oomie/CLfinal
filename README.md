@@ -22,7 +22,7 @@ fatema, u can probably speak on p5 play animations here?
 One of the main challenges we faced while working on this project was getting the p5 interactions to run smoothly. 
 ### fatema pls expand here if u dont mind!
 
-Another challenge we had was working with MongoDB and figuring out how to save our plants array onto the DB, and also sending the array information eveery time a change is made, such as 
+Another challenge we had was working with MongoDB and figuring out how to save our plants array onto the DB, and also sending the array information every time a change is made, such as 
 when a user waters a plant and the sprite changes, or if a plant is deleted. Our issue was that the array was only getting posted whenever a new plant was added to it.
 So, what we needed to do was post the array again on mouse released, so the position and sprite information was updated in the DB. 
 
