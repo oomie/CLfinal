@@ -473,7 +473,6 @@ the image in the object. We instead used an ```imgIndex``` which stores the numb
 A few things we would have liked to add to this project are:
 
 ### Making the garden changes show in real time
-body
 
 ### An option of not having everyone access your plant
 The ability for all users to water and delete any other user's plant is intentional as our concept was creating a public campus garden. However, we like for the next steps we can add an option of having users choose if they want to have others access their plants.
