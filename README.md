@@ -398,7 +398,7 @@ function mousePressed() {
 
 ```
 
-Lastly we added a ```mouseRelesed``` function that leaves the plant in the position where the mouse was released. In the function, we added the soil’s dimensions and followed it with an if statement that checks if the plant is released on the soil, else if the plants are not released on the soil, they disappear. We use ```plants.pop()``` to make them disappear. 
+Lastly we added a ```mouseReleased``` function that leaves the plant in the position where the mouse was released. In the function, we added the soil’s dimensions and followed it with an if statement that checks if the plant is released on the soil, else if the plants are not released on the soil, they disappear. We use ```plants.pop()``` to make them disappear. 
 
 ```
 function mouseReleased() {
@@ -440,10 +440,61 @@ function mouseReleased() {
   }
 }
 ```
+### Sounds
+We felt that adding sound effects would make the user experience better overall, so we downloaded a few sounds to use for background music, tool clicking, cutting plants, and a 'swoosh' sound when a plant disappears(i.e. it is not on the soil). We added the sound effects directly in the code wherever the sound was needed. The background music is in a ```music()``` function so that it could play in a loop:
+```
+// bg music function, starts playing when user clicks canvas
+function music() {
+  bgmusic.play();
+  bgmusic.loop();
+  bgmusic.setVolume(0.1);
+  userStartAudio();
+}
+```
 
-### Toomie could you explain the sound code here or anywhere u think is suitable
+Overall we think adding in these sounds really enhanced the experience!
 
 ### MonogoDB
+We used MongoDB (with QuickMongo) to store our plant objects so that users could come back and find that their plants are still where they left them. At first, we were only posting the ```plants[]``` array whenever a new object was created and pushed to the array. This was causing some issues with the x and y placement of the flowers, as the flowers were appearing in odd places. We fixed this issue by adding a second ```POST``` request for the plants array on ```mouseReleased```, so that the updated ```plantdata``` would be saved to the DB. We used ```db.set``` in the backend to update the array whenever a new object was added to it:
+
+```
+app.post("/plantdata", (req, res) => {
+  //this is posting whenever a new object is made
+  console.log(req.body);
+  let currentDate = Date();
+  let plant = {
+    plant: req.body,
+    date: currentDate,
+  };
+
+  //DB - 2 - add values to the DB
+  db.set("plantdata", req.body);
+  res.json({ task: "success" });
+});
+```
+
+To make sure that our plants would appear on the canvas on load, we added our ```GET``` request for the plants array to the ```setup()``` function, and used ```db.get``` on the server side to fetch the data from the DB.
+
+```
+fetch("/getplants")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.data);
+      plants = data.data;
+    });
+```
+
+```
+// //add route to get all plant information
+app.get("/getplants", (req, res) => {
+  //DB - 3 - fetch from the DB
+  db.get("plantdata").then((plantdata) => {
+    let plant = { data: plantdata };
+    console.log(plantdata);
+    res.json(plant);
+  });
+});
+```
 
 ## Challenges
 One of the main challenges we faced while working on this project was getting the p5 interactions to run smoothly. We first began developing our p5 interactions by creating a class object for the plant. We struggled with writing the code and found ourselves not knowing what to do or how to add more elements to our interaction. We decided to start over in our p5 code and try rewriting it in a way that would make more sense to use. We researched and looked for ways how we can execute our ideas and decided that we were going to create an object when the mouse is pressed. And from there we began building it that way. 
@@ -473,6 +524,7 @@ the image in the object. We instead used an ```imgIndex``` which stores the numb
 A few things we would have liked to add to this project are:
 
 ### Making the garden changes show in real time
+It would have been more immersive if users could see the garden changes in real time, if someone else was also using the site at the same time to water or add plants to the garden. It would have been a fun feature if users could see each other's cursors on the screen, adding a more realistic feel to the garden. 
 
 ### An option of not having everyone access your plant
 The ability for all users to water and delete any other user's plant is intentional as our concept was creating a public campus garden. However, we like for the next steps we can add an option of having users choose if they want to have others access their plants.
@@ -484,12 +536,13 @@ Right now we only have 4 different colored roses in the menu, but we would have 
 In our initial plan, the plant growth would have been controlled by a day-night cycle rather than a user-controlled watering can, but we scrapped that idea because we felt that making it user-controlled would be more interactive. Nevertheless, we still think a day-night cycle would be a fun addition to this project, not necessarily to control plant growth but just to make the experience more engaging.
 
 ### Add a mute button to mute the background music
-
+A comment we got while presenting was that adding a button to toggle the background music on and off would be a good idea.
 
 
 ## User Testing
-body
+Having our classmates user test our project helped us a lot in working on the final site, the comments and suggestions we got were so helpful, but it was also really great just seeing them interact with the project so we could take note of what was straightforward and what needed some work to clarify to the user. We were thinking of whether or not we should add a cutting tool, and our testers preferred to have one as it was more convenient, so we added it. 
 
+One thing that our testers especialy loved seeing were the sprite animations! It was really fun seeing everyone get excited to see the animation happening, so we decided to trigger the animation with a watering can rather than a day-night cycle so that users could actually see the animation in action.
 
 ## Contributions
 
@@ -497,7 +550,8 @@ body
 This project has definitely helped me learn and practice the process of using databases to store and get information. Although I have had experience with using databases throughout the semester, this project seemed to push me further in understanding its technicalities. Similarly, using p5.js wasn't new to me however along with p5.play it was a process that challenged me to push myself. Looking back at it now it was definitely rewarding to see myself be more familiar and confident with front and back end programming. Another aspect of this project I really enjoyed and learned from was user testing with my classmates. The feedback Toomie and I received definitely helped us view our idea from a different perspective which has really enhanced the outcome of our project. Toomie and I contributed together with almost every aspect of the project, we met in person and through zoom to work together. This collaboration has been great and were both able to greatly learn from each other. 
 
 ### Toomie:
-Working on this project was definitely a learning experience for both of us. Although we are using p5 again it was much more challenging to work on since the p5 interactions were the main focus of our project, so working on perfecting that took up a lot of our time. It was quite fun for me to draw and color our plants for this project, and I would love to make more plant sprites to add to it! Finding the right music and sound effects was also very fun for me, I  Just like with the previous project, Fatema and I often worked together while coding, whether it was on zoom or in-person. Whenever we worked separately we would always send updated versions of the code to each other and tried to help each other whenever we were stuck with something. We found that working together most of the time was the most effective way for us to make progress
+Working on this project was definitely a learning experience for both of us. Although we are using p5 again, it was much more challenging to work on since the p5 interactions were the main focus of our project, so working on perfecting that took up a lot of our time. It was quite fun for me to draw and color our plants for this project, and I would love to make more plant sprites to add to it! Finding the right music and sound effects was also very fun for me, I tried to pick sounds that suited the project the most.
+Just like with the previous project, Fatema and I often worked together while coding, whether it was on zoom or in-person. Whenever we worked separately we would always send updated versions of the code to each other and tried to help each other whenever we were stuck with something. We found that working together most of the time was the most effective way for us to make progress and come up with solutions together.
 
 ## References
 * [Instructions Popup](https://www.youtube.com/watch?v=MBaw_6cPmAw)
