@@ -9,11 +9,13 @@ By Fatema Alhameli and Fatima Aljunaibi(toomie)
 A shared virtual garden where multiple users can plant flowers from the plant menu and water them to watch them grow. 
 This is intended to be a calming gardening simulation game. As this is a public garden all users are able to plant new plants anywhere on the soil and remove any plants on the soil.
 
-
 ## Process
-To make our application, we used ```p5.js``` and ```p5.play``` as our JS libraries, and we used MongoDB to store user's plants. 
+To make our application, we used ```p5.js``` and ```p5.play``` as our JS libraries, and we used ```MongoDB``` to store user's plants. 
 We started off by working on the p5 interactions and making the sprites. We couldn't find a lot of plant sprites that had a consistent style, so 
 Toomie used the flowers from Animal Crossing as a reference and drew the plant sprites on Procreate then exported them as png images to use as sprites. 
+
+![sketching](https://user-images.githubusercontent.com/90758596/207847858-b917d1e7-7dcb-412b-8740-68d7d0f88909.jpg)
+
 
 ### Wireframe
 <img src= "https://github.com/FatemaAlhameli/ConnectionsLab/blob/main/Media/Assignments%20Media/FinalProjectw1.png" width = "250" height = "180"> <img src= "https://github.com/FatemaAlhameli/ConnectionsLab/blob/main/Media/Assignments%20Media/FinalProjectw2.png" width = "250" height = "180"> <img src= "https://github.com/FatemaAlhameli/ConnectionsLab/blob/main/Media/Assignments%20Media/FinalProjectw3.png" width = "250" height = "180">
@@ -136,10 +138,10 @@ We first began developing our project on the p5.js editor as almost all of the i
   text("Plant Menu", 25 * unit, 192 * unit);
 ```
 
- We created a global variable called unit and used it to make the canvas responsive for all screen sizes through ```windowWidth``` and ```windowHeight```. At the beginning of our code, we also initialized two arrays, plants and flowers that we used throughout our code to create the interactions. We used the preload function to upload all of the images, font, and sounds. Since our flower images are sprites and have three growing stages we loaded each image of the sprite seperatly but gave them the same file name but different numbers from 0-8. We stored each flower color with its three stages in a separate array and named the array according to the flower color. Each array began with the same image which is a stem. We then pushed all flower arrays into a single array, called flowers[]. So technically we had mutiple arrays in one single array.  
+ We created a global variable called ```unit``` and used it to make the canvas responsive for all screen sizes through ```windowWidth``` and ```windowHeight```. At the beginning of our code, we also initialized two arrays, plants and flowers that we used throughout our code to create the interactions. We used the preload function to upload all of the images, font, and sounds. Since our flower images are sprites and have three growing stages we loaded each image of the sprite seperatly but gave them the same file name but different numbers from 0-8. We stored each flower color with its three stages in a separate array and named the array according to the flower color. Each array began with the same image which is a stem. We then pushed all flower arrays into a single array, called flowers[]. So technically, we had mutiple arrays stored in one single array.  
 
 ```
- //there are 9 images of flowers where fist image is common stem
+ //there are 9 images of flowers where first image is the same sprout:
   Red = []; //storing each image as seprate array
   Red.push(loadImage(`assets/flower${0}.png`));
   Red.push(loadImage(`assets/flower${1}.png`));
@@ -162,7 +164,9 @@ We first began developing our project on the p5.js editor as almost all of the i
 
   //then pushing them into a single array;
   flowers.push(Red, Blue, Purple, White);
-
+  
+  ```
+  ```
 function setup() {
   //canvas fully covers the screen but game it self loads in 16:9 ratio
   //unit variable is used here to make canvas responsive
@@ -171,25 +175,8 @@ function setup() {
   } else {
     unit = windowHeight / 225;
   }
-  createCanvas(windowWidth, windowHeight);
-  noStroke();
-  textFont(myFont);
-  rectsize = 50 * unit;
-
-  //img position
-  shapeX = 50 * unit;
-  shapeY = 300 * unit;
-
-  //grid position
-  rectX = 0;
-  rectMode(CENTER);
-  textAlign(CENTER);
-
-  music();
-
-}
 ```
-In setup, we added the music, text, and position of the images and grid. Where we created our menu panel in draw we added a for loop that drew four squares across the menu. In those four squares, we added the display images of the fully grown flowers. In that same for loop, we added two if statements. The first indicates that if the mouse is on the menu bar coordinates of the flower box and then if the mouse is pressed when the user clicks on the plant menu a plant object is created. This plant object is the most significant part of the code, as it creates the new flowers and then, later on, is used to send them to the server. The plant object contains the x and y coordinates, which are ```mouseX``` and ```mouseY```, and an image index which is equal to 0 that ultimately stores the flower images, g which tracks time, t which is equal to i, that is basically meant to indicate the growing stage of the flower, and lastly the username. The username is a variable we created and made it equal to the window prompt that is called in load. So we just called that variable in the plant object. Once that object is created when the mouse is pressed on the plant menu it is then pushed into the plant array we created.
+In setup, we added the music, text, and position of the images and grid. Where we created our menu panel in draw, we added a ```for loop``` that drew four squares across the menu. In those four squares, we added the display images of the fully grown flowers. In that same ```for loop```, we added two if statements. The first indicates that if the mouse is on the menu bar coordinates of the flower box and then if the mouse is pressed when the user clicks on the plant menu a plant object is created. This plant object is the most significant part of the code, as it creates the new flowers and then, later on, is used to send them to the server. The plant object contains the x and y coordinates, which are ```mouseX``` and ```mouseY```, and an image index which is equal to 0 that ultimately stores the flower images, g which tracks time, t which is equal to i, that is basically meant to indicate the growing stage of the flower, and lastly the username. The username is a variable we created and made it equal to the window prompt that is called in load. So we just called that variable in the plant object. Once that object is created when the mouse is pressed on the plant menu it is then pushed into the plant array we created:
 
 ```
 for (let i = 0; i < flowers.length; i++) {
